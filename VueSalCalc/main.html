@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Salary Calc</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono" rel="stylesheet">
+</head>
+<body>
+<div id='app'>
+    <vue-container>
+     Base Salary: <input type=text v-model.number="baseSalary">
+        <p> Monthly Salary: {{salMonth}} </p>
+        <p> Weekly Salary: {{salWeekly}} </p>
+        <p> Daily Salary: {{salDaily}} </p>
+        <p> Hourly Salary: {{salHourly}} </p>
+    Base Yearly Saving <input type=text v-model.number="percentSaved">
+        <p> Yearly Saving : {{yearlySaving}}</p>
+    </vue-container>
+    <vue-container>
+        <p>Five Year Saving: {{fiveYearSaving}} </p>
+        <p>Fifteen Year Saving: {{fifteenYearSaving}} </p>
+        <p>Thirty Year Saving: {{thirtyYearSaving}} </p>
+    </vue-container>
+    <vue-container>
+        <p v-if='yearlySaving >= 6000'>
+            💸
+        </p>
+    </vue-container>
+        {{ msg }}
+        <line-chart :yearly-saving="yearlySaving"></line-chart>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- VUE CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script> <!-- CHART.js CDN -->
+<script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script> <!-- VUE CHART CDN -->
+<script src='index.js'></script>
+</body>
+</html>
