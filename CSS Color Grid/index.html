@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gradiant Grids</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Federo" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel='icon' type="image/png"  ref='assets/favicon-256.png' />
+</head>
+<body>
+    <h1> A tour of fun CSS</h1>
+    <article>
+        CSS can sometimes be a bit intimidating to some people, even now with CSS grid. However, CSS can be quite nice looking, so 
+        here are several examples of pretty looking color effects one can create in pure CSS. <br><br>
+        All these colors have been created using the native linear or radial gradient feature that CSS has an option. This allows one to create neat
+        color mixes into eachother, that can be useful from nice backgrounds, to making colorful text, but thats not a common supported option at the moment. 
+    </article >
+    <div class = "colors">
+        <div class = 'color'>
+            <div id="grad1"></div>
+            <span>linear-gradient(to right, #C54B8C, #ff6600)</span><br>
+            <button data-clipboard-text="linear-gradient(to right, #C54B8C, #ff6600)">Copy Gradient <i class="far fa-copy"></i></button>
+        </div>
+
+        <div class = 'color'>
+            <div id="grad2"></div>
+            <span>linear-gradient(to right, #ae3ab4, #45ddfc)</span><br>
+            <button data-clipboard-text="linear-gradient(to right, #ae3ab4, #45ddfc)">Copy Gradient <i class="far fa-copy"></i></button>
+        </div>
+
+        <div class = 'color'>
+            <div id="grad3"></div>
+            <span>linear-gradient(to right, #3ab2b4, #e0fc45)</span><br>
+            <button data-clipboard-text="linear-gradient(to right, #3ab2b4, #e0fc45)">Copy Gradient <i class="far fa-copy"></i></button>
+        </div>
+
+        <div class = 'color'>
+            <div id="grad4"></div>
+            <span>radial-gradient(farthest-corner at 10px 10px,
+                    #e1d46f 40%, #c52a74)</span><br>
+            <button data-clipboard-text="radial-gradient(farthest-corner at 10px 10px,
+            #e1d46f 40%, #c52a74)">Copy Gradient <i class="far fa-copy"></i></button>    
+        </div>
+
+        <div class = 'color'>
+            <div id="grad5"></div>
+            <span>radial-gradient(#70b2df, #57dd7a)</span><br>
+            <button data-clipboard-text="radial-gradient(#70b2df, #57dd7a)">Copy Gradient <i class="far fa-copy"></i></button>
+        </div>
+
+        <div class = 'color'>
+            <div id="grad6"></div>
+            <span>radial-gradient(
+                    farthest-side circle at 10px 10px,
+                    #B284BE 40%, #88dc94)</span><br>
+            <button data-clipboard-text="radial-gradient(
+                farthest-side circle at 10px 10px,
+                #B284BE 40%, #88dc94)">Copy Gradient <i class="far fa-copy"></i></button>
+        </div>
+    </div>
+<footer> Created by @LarsESchonander </footer>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script src=index.js></script>
+</body>
+</html>

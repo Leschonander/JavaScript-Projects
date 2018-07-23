@@ -1,0 +1,97 @@
+body {
+    font-family: 'Federo', sans-serif;
+    color: #333333;
+    background: #f6f9fc;
+}
+
+h1 {
+    text-align: center; 
+}
+
+article {
+    margin-left: 100px;
+    margin-right: 100px; 
+    line-height: 1.7em;
+}
+
+
+button {
+    text-align: center; 
+    border-radius: 25px; 
+    border: 0;
+    background: #f6f9fc;
+    border-color: #f6f9fc;
+    font-family: 'Federo', sans-serif;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.075, 1.075);
+}
+
+.colors {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+.color {
+    border: 1px solid #e3e9f2;
+    border-radius: 25px; 
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    background: #e3e9f2;
+}
+
+#grad1 {
+    background: linear-gradient(to right, #C54B8C, #ff6600);
+    height: 150px;
+    width: 150px; 
+    margin: 0 auto; 
+    border-radius: 25px;
+}
+
+#grad2 {
+    background: linear-gradient(to right, #ae3ab4, #45ddfc);
+    height: 150px;
+    width: 150px;
+    margin: 0 auto; 
+    border-radius: 25px;
+}
+
+#grad3 {
+    background: linear-gradient(to right, #3e4ac4, #c43e65 ,#e0fc45);
+    height: 150px;
+    width: 150px;
+    margin: 0 auto; 
+    border-radius: 25px;
+}
+
+#grad4 {
+    background: radial-gradient(farthest-corner at 10px 10px,
+    #e1d46f 40%, #c52a74);
+    height: 150px;
+    width: 150px; 
+    margin: 0 auto; 
+    border-radius: 25px;
+}
+
+#grad5 {
+    background: radial-gradient(#70b2df, #57dd7a);
+    height: 150px;
+    width: 150px;
+    margin: 0 auto; 
+    border-radius: 25px;
+}
+
+#grad6 {
+    background: radial-gradient(
+        farthest-side circle at 10px 10px,
+        #B284BE 40%, #dfee3d);
+    height: 150px;
+    width: 150px;
+    margin: 0 auto; 
+    border-radius: 25px;
+}
