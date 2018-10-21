@@ -1,0 +1,173 @@
+<html>
+    <head>
+        <title>{{ title }}</title>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+        <script type="text/javascript" src="{{ url_for('static',filename='d3.js') }}"></script>
+    </head>
+<body>
+    <header>
+        <h1>{{ title }}<h1>
+    </header>
+    <summary>
+        <article></article>
+        <button id='wine'>Click for wine data!</button>
+        <button id='spirit'>Click for spirit data!</button>
+        <button id='beer'>Click for beer data!</button>
+    </summary>
+    <section>
+        <p>
+            Small d3 scatter plot of a 538 dataset on alcohol consumption across the world. 
+        </p>
+        <input id="slider" type="range" min="0" max="25" step="1" value="0" orient="horizontal">
+    </section>
+    <script>
+        const w = 625;
+        const h = 300;
+        const padding = 40;
+
+        dataset = JSON.parse('{{ data|tojson|safe }}')
+
+        const xScale = d3.scaleLinear()
+                         .domain([0, d3.max(dataset, (d) => d.total_litres_of_pure_alcohol)])
+                         .range([padding, w - padding * 2]);
+        const yScale = d3.scaleLinear()
+                         .domain([0, d3.max(dataset, (d) => d.beer_servings)])
+                         .range([h - padding, padding]);
+        
+        const xAxis = d3.axisBottom(xScale)
+                        .ticks(7);
+        const yAxis = d3.axisLeft(yScale)
+                        .ticks(7);
+        
+        //SVG
+        const svg = d3.select('article')
+                      .append('svg')
+                      .attr('width', w)
+                      .attr('height', h);
+        
+        svg.append("g")
+			   .attr('id', 'circles')
+			   .attr('clip-path', 'url(#chart-area)')
+			   .selectAll('circle')
+			   .data(dataset)
+			   .enter()
+			   .append("circle")
+               .attr('cx', (d) => xScale(d.total_litres_of_pure_alcohol))
+               .attr('cy', (d) => yScale(d.beer_servings))
+               .attr('r', 2)
+               .on('mouseover', function(){
+				   d3.select(this)
+                     .attr('fill', 'orange')//Nice orange on hover
+               .on("mouseout", function(d){
+				   d3.select(this)      
+					 .attr("fill", 'black'); 
+			        });
+			   });
+
+        svg.append("g")
+		   .attr("class", "x axis")
+		   .attr("transform", "translate(0," + (h - padding) + ")")
+		   .call(xAxis);
+			
+        svg.append("g")
+            .attr("class", "y axis")
+            .attr("transform", "translate(" + padding + ",0)")
+            .call(yAxis)
+        
+        //Update for Wine
+        d3.selectAll('button')
+          .on('click', function(){
+
+            let ID = d3.select(this).attr('id')
+
+            if (ID === 'wine'){
+                yScale.domain([0, d3.max(dataset, (d) => d.wine_servings)])
+
+                svg.selectAll("circle")
+                    .data(dataset)
+                    .transition()
+                    .duration(1000)
+                    .on('start', function() { //does not like anon functions
+                        d3.select(this)
+                            .attr('fill', 'magenta')
+                            .attr('r', 3);
+                        })
+                    .attr('cy', (d) => yScale(d.wine_servings))
+                    .on('end', function(){
+                        d3.select(this)
+                        .transition()
+                        .duration(1000)
+                        .attr('fill', 'black')
+                        .attr('r', 2);
+                    });
+                
+                svg.select('.y.axis')
+                    .transition()
+                    .duration(1000)
+                    .call(yAxis);
+            } else if(ID === 'spirit') {
+                yScale.domain([0, d3.max(dataset, (d) => d.spirit_servings)])
+
+                svg.selectAll("circle")
+                    .data(dataset)
+                    .transition()
+                    .duration(1000)
+                    .on('start', function() { 
+                        d3.select(this)
+                            .attr('fill', 'teal')
+                            .attr('r', 3);
+                        })
+                    .attr('cy', (d) => yScale(d.spirit_servings))
+                    .on('end', function(){
+                        d3.select(this)
+                        .transition()
+                        .duration(1000)
+                        .attr('fill', 'black')
+                        .attr('r', 2);
+                    });
+
+                svg.select('.y.axis')
+                    .transition()
+                    .duration(1000)
+                    .call(yAxis);
+            } else if (ID === 'beer') {
+                yScale.domain([0, d3.max(dataset, (d) => d.beer_servings)])
+
+                svg.selectAll("circle")
+                    .data(dataset)
+                    .transition()
+                    .duration(1000)
+                    .on('start', function() { 
+                        d3.select(this)
+                            .attr('fill', 'orange')
+                            .attr('r', 3);
+                        })
+                    .attr('cy', (d) => yScale(d.beer_servings))
+                    .on('end', function(){
+                        d3.select(this)
+                        .transition()
+                        .duration(1000)
+                        .attr('fill', 'black')
+                        .attr('r', 2);
+                    });
+
+                svg.select('.y.axis')
+                    .transition()
+                    .duration(1000)
+                    .call(yAxis);
+            }
+          })
+        d3.select('input')
+          .on('change', function(){
+              let threshold = +d3.select(this).node().value;
+
+              svg.selectAll('circle')
+                 .attr('fill', 'black')
+                 .filter((d) => d.total_litres_of_pure_alcohol <= threshold)
+                 .attr('fill', 'red')
+          })
+         
+
+    </script>
+</body>
+</html>
