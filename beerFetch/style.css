@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Arimo');
+
+body {
+    color: #333;
+    font-family: 'Arimo', sans-serif;
+    background: #f7f7f7;
+}
+
+h1 {
+    text-align: center;
+}
+
+#form {
+    margin: 0 30% 0 30%; 
+    text-align: center;
+}
+
+#form input{
+    caret-color: #009ddc;
+}
+
+#form button{
+    margin: 5px 5px 5px 5px; 
+}
+
+#beer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1rem;
+    margin: 0 20% 0 20%; 
+    padding: 5px;
+    border: 1px solid black;
+}
+
+#content {
+    background: #f5f0dd;
+    text-align: center; 
+}
+
+#content img {
+    width: 50px;
+    height: 50px;
+}
