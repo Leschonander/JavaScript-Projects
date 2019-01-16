@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, WebVR! • A-Frame</title>
+    <meta name="description" content="Hello, WebVR! • A-Frame">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src='index.js'></script>
+  </head>
+  <body> <!-- left is (left-right position) | middle is hight | right is (front-back position)-->
+    <a-scene background="color: #ECECEC" myscene cursor="rayOrigin: mouse">
+      <a-octahedron position="0 1.25 -4" color="#2d922e" radius=".75" height=".5"></a-octahedron>
+      <a-text  position="2.5 1 -3" value="To change the entity value!" geometry="primitive:plane"></a-text>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="5" height="4" color="#7BC8A4" shadow></a-plane>
+      <a-entity position="-2.5 1 -2.5" geometry="primitive: plane; width: auto; height: auto" material="color: #eee"
+                text="anchor: center; width: 1.5; color: #193248; value: [LEFT ANCHOR] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam">
+      </a-entity> 
+    </a-scene>
+  </body>
+</html>
+<!--
+<a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
+<a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
+<a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
+
+
+-->
