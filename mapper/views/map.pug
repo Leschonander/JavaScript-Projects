@@ -1,0 +1,25 @@
+extends layout
+block content
+    button(id='envelop') Add Layer
+    #map
+    script.
+        let myData = !{JSON.stringify(jsonData)};
+        let enveloped = turf.envelope(myData);
+
+        // Create variable to hold map element, give initial settings to map
+        let map = L.map('map',{ center: [42.375562, -71.106870], zoom: 14});
+        // Add OpenStreetMap tile layer to map element
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        	attribution: '© OpenStreetMap'
+        }).addTo(map);
+        // Add JSON to map
+        L.geoJson(myData,{
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(feature.properties.f2); 
+            }
+        }).addTo(map);
+
+        const EnvButton = document.querySelector('#envelop')
+        EnvButton.addEventListener('click', () => {
+            L.geoJSON(enveloped).addTo(map)
+        })

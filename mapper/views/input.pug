@@ -1,0 +1,16 @@
+extends layout
+block content
+    form(action = "/input", method = "POST")
+        div
+            label(for = "lat") Longitude:
+            input(name = "lat" value = "lat")
+        br
+        div
+            label(for = "lon") Latitude:
+            input(name = "lon" value = "lon")
+        br
+        br
+        div
+            label(for = "name") Name:
+            input(name = "name" value = "name")
+        button(type = "submit") Post Cafe!
