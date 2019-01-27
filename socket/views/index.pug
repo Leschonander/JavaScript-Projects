@@ -1,0 +1,62 @@
+doctype html
+html
+  head
+    title= title 
+    link(rel='stylesheet', href='/style.css')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js')
+  body
+    h1= title
+    input( id='user' autocomplete='off')
+    input( id='color' autocomplete='off')
+    ul(id='messages')
+    form(action='')
+      input( id='m' autocomplete='off')
+      button Send
+  script.
+    let socket = io();
+
+    const form = document.querySelector('form')
+    const messages = document.querySelector('#messages')
+    const m = document.querySelector('#m')
+    const username = document.querySelector('#user')
+    const color = document.querySelector('#color')
+
+    socket.nickname = username.value
+    form.onsubmit = function(e){
+      e.preventDefault();
+      socket.emit('chat message', `${username.value}: ${m.value}`)
+      m.value = ''
+
+      return false
+    }
+
+    m.addEventListener('change', function(e){
+      socket.emit('typing', `${username.value} is typing...`)
+    })
+
+    socket.on('chat message', (msg) => {
+      let node = document.createElement('li')
+      let text = document.createTextNode(msg)
+      node.appendChild(text)
+      node.style.color = color.value
+
+      messages.appendChild(node)
+    });
+
+    socket.on('disconnect', (msg) => {
+      let node = document.createElement('li')
+      let text = document.createTextNode(`${msg}`)
+      node.appendChild(text)
+
+      messages.appendChild(node)
+    })
+
+    socket.on('connection', (msg) => {
+      let node = document.createElement('li')
+      let text = document.createTextNode(`${msg}`)
+      node.appendChild(text)
+
+      messages.appendChild(node)
+    })
+
+      
